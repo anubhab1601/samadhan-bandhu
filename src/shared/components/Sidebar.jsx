@@ -17,7 +17,9 @@ import {
     ChevronRight,
     Briefcase,
     TrendingUp,
-    CheckCircle
+    CheckCircle,
+    User,
+    Megaphone
 } from 'lucide-react';
 
 const ROLE_MENUS = {
@@ -28,25 +30,29 @@ const ROLE_MENUS = {
         { path: '/central/funds', label: 'Fund Allocation', icon: DollarSign },
         { path: '/central/gis', label: 'GIS Mapping', icon: Map },
         { path: '/central/reports', label: 'Reports', icon: FileText },
-        { path: '/central/alerts', label: 'Alerts', icon: Bell }
+        { path: '/central/alerts', label: 'Alerts', icon: Bell },
+        { path: '/central/broadcast', label: 'Broadcasts', icon: Megaphone }
     ],
     'state': [
         { path: '/state/dashboard', label: 'Dashboard', icon: Home },
+        { path: '/state/applications', label: 'Applications', icon: FileText },
         { path: '/state/projects', label: 'Projects', icon: FolderOpen },
+        { path: '/state/inspections/schedule', label: 'Inspections', icon: Calendar },
+        { path: '/state/funds', label: 'Fund Management', icon: DollarSign },
+        { path: '/state/funds/blocks', label: 'Block Fund Releases', icon: TrendingUp },
         { path: '/state/districts', label: 'Districts', icon: Map },
-        { path: '/state/reports', label: 'Reports', icon: FileText }
+        { path: '/state/reports', label: 'Reports', icon: BarChart3 },
+        { path: '/state/users/pending', label: 'User Management', icon: Users },
+        { path: '/state/profile', label: 'Profile', icon: User }
     ],
-    'sarpanch': [
-        { path: '/sarpanch/dashboard', label: 'Dashboard', icon: Home },
-        { path: '/sarpanch/new-application', label: 'New Application', icon: FileText },
-        { path: '/sarpanch/applications', label: 'My Applications', icon: ClipboardList },
-        { path: '/sarpanch/track-application', label: 'Track Status', icon: MapPin },
-        { path: '/sarpanch/tenders', label: 'Tenders', icon: Briefcase },
-        { path: '/sarpanch/ongoing-projects', label: 'Ongoing Projects', icon: TrendingUp },
-        { path: '/sarpanch/completed-projects', label: 'Completed Projects', icon: CheckCircle },
-        { path: '/sarpanch/notifications', label: 'Notifications', icon: Bell },
-        { path: '/sarpanch/fund-tracking', label: 'Fund Tracking', icon: DollarSign },
-        { path: '/sarpanch/profile', label: 'Profile', icon: Users }
+    'block': [
+        { path: '/block/dashboard', label: 'Dashboard', icon: Home },
+        { path: '/block/fund-management', label: 'Fund Management', icon: DollarSign },
+        { path: '/block/tenders', label: 'Tenders', icon: Briefcase },
+        { path: '/block/ongoing-projects', label: 'Ongoing Projects', icon: TrendingUp },
+        { path: '/block/completed-projects', label: 'Completed Projects', icon: CheckCircle },
+        { path: '/block/notifications', label: 'Notifications', icon: Bell },
+        { path: '/block/profile', label: 'Profile', icon: User }
     ],
     'field-officer': [
         { path: '/field-officer/dashboard', label: 'Dashboard', icon: Home },
@@ -68,27 +74,15 @@ const ROLE_MENUS = {
         { path: '/agency/workers', label: 'Workers', icon: Users },
         { path: '/agency/schedule', label: 'Schedule', icon: Calendar },
         { path: '/agency/profile', label: 'Profile', icon: Users }
-    ],
-    'iva-officer': [
-        { path: '/iva-officer/dashboard', label: 'Dashboard', icon: Home },
-        { path: '/iva-officer/assignments', label: 'Assignments', icon: ClipboardList },
-        { path: '/iva-officer/verifications', label: 'Verifications', icon: CheckSquare },
-        { path: '/iva-officer/schedule', label: 'Schedule', icon: Calendar },
-        { path: '/iva-officer/tasks', label: 'Tasks', icon: ClipboardList },
-        { path: '/iva-officer/history', label: 'History', icon: FileText },
-        { path: '/iva-officer/notifications', label: 'Notifications', icon: Bell },
-        { path: '/iva-officer/reports', label: 'Reports', icon: BarChart3 },
-        { path: '/iva-officer/profile', label: 'Profile', icon: Users }
     ]
 };
 
 const ROLE_COLORS = {
     'central': 'text-blue-600 bg-blue-50 border-blue-600',
     'state': 'text-green-600 bg-green-50 border-green-600',
-    'sarpanch': 'text-purple-600 bg-purple-50 border-purple-600',
+    'block': 'text-purple-600 bg-purple-50 border-purple-600',
     'field-officer': 'text-indigo-600 bg-indigo-50 border-indigo-600',
-    'agency': 'text-orange-600 bg-orange-50 border-orange-600',
-    'iva-officer': 'text-teal-600 bg-teal-50 border-teal-600'
+    'agency': 'text-orange-600 bg-orange-50 border-orange-600'
 };
 
 export default function Sidebar({ role }) {

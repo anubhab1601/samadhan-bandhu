@@ -5,6 +5,7 @@ import {
     AlertCircle, ArrowRight, Bell, ListTodo, Upload, Users, Calendar,
     BarChart3, DollarSign, Eye, Edit
 } from 'lucide-react';
+import BroadcastDisplay from '../../../shared/components/BroadcastDisplay';
 
 export default function Dashboard() {
     const navigate = useNavigate();
@@ -75,6 +76,7 @@ export default function Dashboard() {
 
     return (
         <div className="space-y-6">
+            <BroadcastDisplay role="agency" />
             {/* Page Header */}
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 rounded-lg shadow-lg text-white">
                 <h1 className="text-3xl font-bold mb-2">Agency Dashboard</h1>

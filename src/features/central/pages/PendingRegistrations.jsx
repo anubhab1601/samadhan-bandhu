@@ -27,20 +27,6 @@ export default function PendingRegistrations() {
         },
         {
             id: 2,
-            fullName: 'Priya Sharma',
-            email: 'priya.sharma@iva.org',
-            mobile: '9876543211',
-            role: 'iva-officer',
-            roleLabel: 'IVA Officer',
-            state: 'Gujarat',
-            district: 'Ahmedabad',
-            organization: 'Gujarat Verification Agency',
-            designation: 'Verification Officer',
-            submittedOn: '2025-11-30',
-            status: 'pending'
-        },
-        {
-            id: 3,
             fullName: 'Amit Patel',
             email: 'amit.patel@msje.gov.in',
             mobile: '9876543212',
@@ -51,6 +37,20 @@ export default function PendingRegistrations() {
             ministry: 'Ministry of Social Justice',
             designation: 'Joint Secretary',
             submittedOn: '2025-11-29',
+            status: 'pending'
+        },
+        {
+            id: 3,
+            fullName: 'Suresh Patil',
+            email: 'suresh.patil@block.gov.in',
+            mobile: '9876543213',
+            role: 'block',
+            roleLabel: 'Block Officer',
+            state: 'Maharashtra',
+            district: 'Pune',
+            block: 'Haveli',
+            gramPanchayat: 'Haveli GP',
+            submittedOn: '2025-12-02',
             status: 'pending'
         }
     ]);
@@ -97,7 +97,7 @@ export default function PendingRegistrations() {
     const getRoleBadgeColor = (role) => {
         const colors = {
             'state': 'bg-blue-100 text-blue-800',
-            'iva-officer': 'bg-green-100 text-green-800',
+            'block': 'bg-green-100 text-green-800',
             'central': 'bg-purple-100 text-purple-800'
         };
         return colors[role] || 'bg-gray-100 text-gray-800';
@@ -170,7 +170,7 @@ export default function PendingRegistrations() {
                         >
                             <option value="all">All Roles</option>
                             <option value="state">State Officer</option>
-                            <option value="iva-officer">IVA Officer</option>
+                            <option value="block">Block Officer</option>
                             <option value="central">Center Officer</option>
                         </select>
                     </div>

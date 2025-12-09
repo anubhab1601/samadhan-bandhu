@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Filter, Download, Eye, Edit, Trash2, Plus, FileText } from 'lucide-react';
 import api from '../services/api';
 
@@ -38,10 +39,6 @@ export default function Projects() {
                     <h1 className="text-2xl font-bold text-gray-900">Project Registry</h1>
                     <p className="text-sm text-gray-600 mt-1">Comprehensive list of all PM-AJAY projects across India</p>
                 </div>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex items-center gap-2 shadow-sm">
-                    <Plus size={18} />
-                    New Project
-                </button>
             </div>
 
             {/* Filters and Search */}
@@ -157,18 +154,18 @@ export default function Projects() {
                                         </td>
                                         <td className="px-6 py-4 text-sm">
                                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${project.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                                                    project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
-                                                        project.status === 'On Hold' ? 'bg-red-100 text-red-700' :
-                                                            'bg-orange-100 text-orange-700'
+                                                project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
+                                                    project.status === 'On Hold' ? 'bg-red-100 text-red-700' :
+                                                        'bg-orange-100 text-orange-700'
                                                 }`}>
                                                 {project.status}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 text-sm">
                                             <div className="flex items-center gap-3">
-                                                <button className="text-blue-600 hover:text-blue-700" title="View Details">
+                                                <Link to={`/central/projects/${project.id}`} className="text-blue-600 hover:text-blue-700" title="View Details">
                                                     <Eye size={18} />
-                                                </button>
+                                                </Link>
                                                 <button className="text-green-600 hover:text-green-700" title="Edit">
                                                     <Edit size={18} />
                                                 </button>

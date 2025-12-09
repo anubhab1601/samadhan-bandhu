@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { MapPin, Filter, Search, Eye, Download, Layers, ZoomIn, ZoomOut } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
@@ -34,9 +35,13 @@ export default function GISMapping() {
     const [selectedStatus, setSelectedStatus] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
 
+    const handleExport = () => {
+        alert("Map export started. The file will be downloaded shortly.");
+    };
+
     // Sample project data with real coordinates
     const projects = [
-        { id: 1, name: "Village Development", state: "Karnataka", district: "Mysore", lat: 12.2958, lng: 76.6394, status: "In Progress", budget: "2.5 Cr" },
+        { id: 1, name: "Adarsh Gram Development", state: "Karnataka", district: "Mysore", lat: 12.2958, lng: 76.6394, status: "In Progress", budget: "2.5 Cr" },
         { id: 2, name: "Skill Development Centre", state: "Bihar", district: "Patna", lat: 25.5941, lng: 85.1376, status: "Approved", budget: "1.8 Cr" },
         { id: 3, name: "Community Hall Construction", state: "Rajasthan", district: "Jaipur", lat: 26.9124, lng: 75.7873, status: "Completed", budget: "0.9 Cr" },
         { id: 4, name: "Water Supply Project", state: "Uttar Pradesh", district: "Lucknow", lat: 26.8467, lng: 80.9462, status: "Pending", budget: "3.2 Cr" },
@@ -121,7 +126,10 @@ export default function GISMapping() {
                     </div>
 
                     <div className="flex items-end">
-                        <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex items-center justify-center gap-2">
+                        <button
+                            onClick={handleExport}
+                            className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex items-center justify-center gap-2"
+                        >
                             <Download size={18} />
                             Export Map
                         </button>
@@ -196,9 +204,9 @@ export default function GISMapping() {
                                             <div className="mt-2 flex items-center justify-between">
                                                 <span className="text-xs font-semibold text-gray-700">₹{project.budget}</span>
                                                 <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${project.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                                                        project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
-                                                            project.status === 'Approved' ? 'bg-indigo-100 text-indigo-700' :
-                                                                'bg-orange-100 text-orange-700'
+                                                    project.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
+                                                        project.status === 'Approved' ? 'bg-indigo-100 text-indigo-700' :
+                                                            'bg-orange-100 text-orange-700'
                                                     }`}>
                                                     {project.status}
                                                 </span>
@@ -241,9 +249,9 @@ export default function GISMapping() {
                                         </div>
                                         <div className="flex items-center justify-between mt-3">
                                             <span className="text-xs font-semibold text-gray-700">₹{project.budget}</span>
-                                            <button className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+                                            <Link to={`/central/projects/${project.id}`} className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
                                                 <Eye size={14} /> View
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 ))}

@@ -47,7 +47,7 @@ export const translations = {
         stats_funds: "Funds Utilized",
 
         features_title: "Key Features",
-        feat_infra: "Village",
+        feat_infra: "Adarsh Gram",
         feat_infra_desc: "Integrated development of SC majority villages",
         feat_income: "Income Generation",
         feat_income_desc: "Financial assistance for livelihood projects",

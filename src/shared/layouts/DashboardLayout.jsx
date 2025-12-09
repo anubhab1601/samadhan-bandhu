@@ -1,11 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { X, Megaphone, Info, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
+import Chatbot from '../components/Chatbot';
 
 export default function DashboardLayout({ role }) {
+    const [broadcast, setBroadcast] = useState(null);
+
+    useEffect(() => {
+        const checkBroadcast = () => {
+            try {
+                const stored = localStorage.getItem('pm_ajay_broadcast');
+                if (stored) {
+                    setBroadcast(JSON.parse(stored));
+                } else {
+                    setBroadcast(null);
+                }
+            } catch (e) {
+                console.error("Error parsing broadcast", e);
+            }
+        };
+
+        checkBroadcast();
+
+        // Listen for storage events (cross-tab)
+        window.addEventListener('storage', checkBroadcast);
+
+        // Poll for same-tab updates
+        const interval = setInterval(checkBroadcast, 1000);
+
+        return () => {
+            window.removeEventListener('storage', checkBroadcast);
+            clearInterval(interval);
+        };
+    }, []);
+
+    const getPriorityStyles = (priority) => {
+        switch (priority) {
+            case 'warning': return 'bg-red-600';
+            case 'joy': return 'bg-green-600';
+            default: return 'bg-blue-600';
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gray-50">
+            {broadcast && (
+                <div className={`${getPriorityStyles(broadcast.priority)} text-white px-4 py-2 shadow-md transition-all duration-300`}>
+                    <div className="max-w-7xl mx-auto flex items-center justify-between">
+                        <div className="flex items-center gap-3 animate-pulse">
+                            <Megaphone size={18} className="flex-shrink-0" />
+                            <p className="font-medium text-sm md:text-base">
+                                <span className="font-bold uppercase tracking-wider text-xs mr-2 opacity-90 border border-white/30 px-1 rounded">
+                                    {broadcast.priority === 'joy' ? 'Success' : broadcast.priority === 'warning' ? 'Urgent' : 'Update'}
+                                </span>
+                                {broadcast.message}
+                            </p>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <span className="text-xs opacity-75 hidden sm:inline-block">
+                                {new Date(broadcast.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                            <button
+                                onClick={() => setBroadcast(null)}
+                                className="hover:bg-white/20 p-1 rounded transition-colors"
+                            >
+                                <X size={18} />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <Navbar role={role} />
 
             <div className="flex">
@@ -17,6 +83,8 @@ export default function DashboardLayout({ role }) {
                     </div>
                 </main>
             </div>
+
+            <Chatbot />
 
             {/* Footer */}
             <footer className="bg-[#1b1b1b] text-gray-400 py-6 mt-auto">

@@ -125,15 +125,15 @@ export default function Login() {
                                 Welcome to <span className="text-blue-600">State Officer Portal</span>
                             </h1>
                             <p className="text-lg text-gray-600 leading-relaxed">
-                                Oversee village development, verify applications, assign IVAs, and monitor project progress across the state under PM-AJAY.
+                                Oversee village development, verify applications, and monitor project progress across the state under PM-AJAY.
                             </p>
                         </div>
 
                         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                             <h3 className="font-semibold text-blue-900 mb-2">Key Responsibilities:</h3>
                             <ul className="text-sm text-gray-700 space-y-1">
-                                <li>✓ Review applications submitted by Sarpanchs</li>
-                                <li>✓ Assign Information Verifying Agencies (IVAs)</li>
+                                <li>✓ Review applications submitted by Blocks</li>
+                                <li>✓ Review and verify applications</li>
                                 <li>✓ Forward verified applications to PM-AJAY</li>
                                 <li>✓ Schedule and monitor inspections</li>
                                 <li>✓ Generate state-level progress reports</li>

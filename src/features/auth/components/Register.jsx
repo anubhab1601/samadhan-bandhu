@@ -6,20 +6,18 @@ import {
     Shield, CreditCard, Calendar, Hash
 } from 'lucide-react';
 import {
-    SarpanchForm,
+    BlockOfficerForm,
     AgencyForm,
     FieldOfficerForm,
     StateOfficerForm,
-    IVAOfficerForm,
     CenterOfficerForm
 } from './RoleSpecificForms';
 
 const ROLE_OPTIONS = [
-    { value: 'sarpanch', label: 'Sarpanch', icon: '👤', description: 'Village head/representative' },
+    { value: 'block', label: 'Block Officer', icon: '👤', description: 'Block-level fund management' },
     { value: 'agency', label: 'Agency', icon: '🏗️', description: 'Construction/Implementation agency' },
     { value: 'field-officer', label: 'Field Officer', icon: '👨‍💼', description: 'Inspection and monitoring officer' },
     { value: 'state', label: 'State Officer', icon: '🏢', description: 'State government officer' },
-    { value: 'iva-officer', label: 'IVA Officer', icon: '✅', description: 'Information Verifying Agency officer' },
     { value: 'central', label: 'Center Officer', icon: '🏛️', description: 'Central government officer' }
 ];
 
@@ -53,12 +51,12 @@ export default function Register() {
         state: '',
         district: '',
 
-        // Sarpanch specific
+        // Block Officer specific
         villageName: '',
         gramPanchayat: '',
         block: '',
         pin: '',
-        sarpanchId: '',
+        blockOfficerId: '',
         tenureFrom: '',
         tenureTo: '',
 
@@ -184,10 +182,10 @@ export default function Register() {
 
         if (currentStep === 3) {
             // Role-specific validation
-            if (selectedRole === 'sarpanch') {
+            if (selectedRole === 'block') {
                 if (!formData.villageName) newErrors.villageName = 'Village name is required';
                 if (!formData.gramPanchayat) newErrors.gramPanchayat = 'Gram Panchayat is required';
-                if (!formData.sarpanchId) newErrors.sarpanchId = 'Sarpanch ID is required';
+                if (!formData.blockOfficerId) newErrors.blockOfficerId = 'Block Officer ID is required';
             } else if (selectedRole === 'agency') {
                 if (!formData.agencyName) newErrors.agencyName = 'Agency name is required';
                 if (!formData.registrationNumber) newErrors.registrationNumber = 'Registration number is required';
@@ -501,8 +499,8 @@ export default function Register() {
                             <p className="text-gray-600 mb-6">Provide additional information for your role</p>
 
                             {/* Render role-specific forms */}
-                            {selectedRole === 'sarpanch' && (
-                                <SarpanchForm
+                            {selectedRole === 'block' && (
+                                <BlockOfficerForm
                                     formData={formData}
                                     handleInputChange={handleInputChange}
                                     errors={errors}
@@ -530,14 +528,6 @@ export default function Register() {
 
                             {selectedRole === 'state' && (
                                 <StateOfficerForm
-                                    formData={formData}
-                                    handleInputChange={handleInputChange}
-                                    errors={errors}
-                                />
-                            )}
-
-                            {selectedRole === 'iva-officer' && (
-                                <IVAOfficerForm
                                     formData={formData}
                                     handleInputChange={handleInputChange}
                                     errors={errors}

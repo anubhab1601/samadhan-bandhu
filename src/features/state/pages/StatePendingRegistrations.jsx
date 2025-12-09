@@ -18,14 +18,14 @@ export default function StatePendingRegistrations() {
             fullName: 'Ramesh Patil',
             email: 'ramesh.patil@village.in',
             mobile: '9876543213',
-            role: 'sarpanch',
-            roleLabel: 'Sarpanch',
+            role: 'block',
+            roleLabel: 'Block Officer',
             state: 'Maharashtra',
             district: 'Pune',
             villageName: 'Khed',
             gramPanchayat: 'Khed GP',
             block: 'Khed',
-            sarpanchId: 'SP/MH/2024/001',
+            blockOfficerId: 'BO/MH/2024/001',
             submittedOn: '2025-12-01',
             status: 'pending'
         },
@@ -111,7 +111,7 @@ export default function StatePendingRegistrations() {
 
     const getRoleBadgeColor = (role) => {
         const colors = {
-            'sarpanch': 'bg-green-100 text-green-800',
+            'block': 'bg-green-100 text-green-800',
             'agency': 'bg-orange-100 text-orange-800',
             'field-officer': 'bg-blue-100 text-blue-800'
         };
@@ -126,7 +126,7 @@ export default function StatePendingRegistrations() {
                     <UserCheck size={28} className="text-blue-600" />
                     Pending Registrations
                 </h1>
-                <p className="text-gray-600 mt-1">Review and approve user registrations for Sarpanch, Agencies, and Field Officers</p>
+                <p className="text-gray-600 mt-1">Review and approve user registrations for Block Officers, Agencies, and Field Officers</p>
             </div>
 
             {/* Stats Cards */}
@@ -143,9 +143,9 @@ export default function StatePendingRegistrations() {
                 <div className="bg-white p-4 rounded-lg shadow border border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-gray-600">Sarpanch</p>
+                            <p className="text-sm text-gray-600">Block Officers</p>
                             <p className="text-2xl font-bold text-green-600">
-                                {filteredRegistrations.filter(r => r.role === 'sarpanch').length}
+                                {filteredRegistrations.filter(r => r.role === 'block').length}
                             </p>
                         </div>
                         <div className="text-2xl">👤</div>
@@ -199,7 +199,7 @@ export default function StatePendingRegistrations() {
                             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="all">All Roles</option>
-                            <option value="sarpanch">Sarpanch</option>
+                            <option value="block">Block Officer</option>
                             <option value="agency">Agency</option>
                             <option value="field-officer">Field Officer</option>
                         </select>
@@ -275,7 +275,7 @@ export default function StatePendingRegistrations() {
                                             {registration.district}
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-600">
-                                            {registration.role === 'sarpanch' && registration.villageName}
+                                            {registration.role === 'block' && registration.villageName}
                                             {registration.role === 'agency' && registration.agencyName}
                                             {registration.role === 'field-officer' && registration.designation}
                                         </td>
@@ -340,8 +340,8 @@ export default function StatePendingRegistrations() {
                                     {selectedRegistration.roleLabel} Details
                                 </h3>
                                 <div className="grid grid-cols-2 gap-4">
-                                    {/* Sarpanch Fields */}
-                                    {selectedRegistration.role === 'sarpanch' && (
+                                    {/* Block Officer Fields */}
+                                    {selectedRegistration.role === 'block' && (
                                         <>
                                             <div>
                                                 <label className="text-sm text-gray-600">Village Name</label>
@@ -356,8 +356,8 @@ export default function StatePendingRegistrations() {
                                                 <p className="font-medium text-gray-900">{selectedRegistration.block}</p>
                                             </div>
                                             <div>
-                                                <label className="text-sm text-gray-600">Sarpanch ID</label>
-                                                <p className="font-medium text-gray-900">{selectedRegistration.sarpanchId}</p>
+                                                <label className="text-sm text-gray-600">Block Officer ID</label>
+                                                <p className="font-medium text-gray-900">{selectedRegistration.blockOfficerId}</p>
                                             </div>
                                         </>
                                     )}

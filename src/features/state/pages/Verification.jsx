@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Eye, UserPlus, CheckCircle, Clock, AlertCircle, FileText, MapPin, Calendar } from 'lucide-react';
 
 export default function Verification() {
+    const navigate = useNavigate();
     const [applications, setApplications] = useState([
         {
             id: 'PMAJAY-2025-MH-12345',
@@ -109,8 +111,21 @@ export default function Verification() {
     };
 
     const viewReport = (app) => {
+        if (!app.verificationReport) {
+            alert('No verification report available for this application.');
+            return;
+        }
         setSelectedApp(app);
         setShowReportModal(true);
+    };
+
+    const handleForwardToCenter = () => {
+        alert(`Application ${selectedApp.id} forwarded to PM-AJAY Center successfully!`);
+        setShowReportModal(false);
+        // Update status in local state
+        setApplications(applications.map(app =>
+            app.id === selectedApp.id ? { ...app, status: 'Forwarded to Center' } : app
+        ));
     };
 
     const filteredApplications = applications.filter(app => {
@@ -305,7 +320,10 @@ export default function Verification() {
                                             View Report
                                         </button>
                                     )}
-                                    <button className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center gap-2">
+                                    <button
+                                        onClick={() => navigate(`/state/applications/${app.id}`)}
+                                        className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center gap-2"
+                                    >
                                         <FileText size={18} />
                                         View Application
                                     </button>
@@ -437,7 +455,10 @@ export default function Verification() {
                             >
                                 Close
                             </button>
-                            <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+                            <button
+                                onClick={handleForwardToCenter}
+                                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                            >
                                 Forward to PM-AJAY
                             </button>
                         </div>

@@ -111,37 +111,49 @@ export default function Reports() {
             <div>
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Performance Indicators</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-sm p-6 text-white">
-                        <div className="flex items-center justify-between mb-2">
-                            <TrendingUp size={32} />
-                            <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">Total</span>
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-gray-600 mb-1">Total Projects</p>
+                                <p className="text-3xl font-bold text-gray-900">{stats.totalProjects}</p>
+                            </div>
+                            <div className="p-3 bg-blue-50 rounded-lg">
+                                <TrendingUp className="text-blue-600" size={24} />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold mb-1">{stats.totalProjects}</p>
-                        <p className="text-blue-100 text-sm">Total Projects</p>
                     </div>
-                    <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-sm p-6 text-white">
-                        <div className="flex items-center justify-between mb-2">
-                            <CheckCircle size={32} />
-                            <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">Completed</span>
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-gray-600 mb-1">Completed</p>
+                                <p className="text-3xl font-bold text-green-600">{stats.completedProjects}</p>
+                            </div>
+                            <div className="p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="text-green-600" size={24} />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold mb-1">{stats.completedProjects}</p>
-                        <p className="text-green-100 text-sm">Successfully Completed</p>
                     </div>
-                    <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg shadow-sm p-6 text-white">
-                        <div className="flex items-center justify-between mb-2">
-                            <Clock size={32} />
-                            <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">Active</span>
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-gray-600 mb-1">Active</p>
+                                <p className="text-3xl font-bold text-orange-600">{stats.ongoingProjects}</p>
+                            </div>
+                            <div className="p-3 bg-orange-50 rounded-lg">
+                                <Clock className="text-orange-600" size={24} />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold mb-1">{stats.ongoingProjects}</p>
-                        <p className="text-orange-100 text-sm">Ongoing Projects</p>
                     </div>
-                    <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg shadow-sm p-6 text-white">
-                        <div className="flex items-center justify-between mb-2">
-                            <IndianRupee size={32} />
-                            <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">Budget</span>
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-gray-600 mb-1">Total Budget</p>
+                                <p className="text-3xl font-bold text-purple-600">₹{(stats.totalBudget / 10000000).toFixed(0)}Cr</p>
+                            </div>
+                            <div className="p-3 bg-purple-50 rounded-lg">
+                                <IndianRupee className="text-purple-600" size={24} />
+                            </div>
                         </div>
-                        <p className="text-3xl font-bold mb-1">₹{(stats.totalBudget / 10000000).toFixed(0)}Cr</p>
-                        <p className="text-purple-100 text-sm">Total Allocated</p>
                     </div>
                 </div>
             </div>

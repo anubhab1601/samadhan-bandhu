@@ -49,6 +49,18 @@ export default function Reports() {
         alert(`Exporting ${selectedReport} report as ${format.toUpperCase()}...`);
     };
 
+    const handlePrint = () => {
+        window.print();
+    };
+
+    const handleGenerateReport = () => {
+        alert(`Generating ${reportTypes.find(r => r.id === selectedReport)?.name}...`);
+    };
+
+    const handleApplyFilters = () => {
+        alert(`Filters applied: Date Range - ${dateRange}, State - ${selectedState}`);
+    };
+
     return (
         <div className="space-y-6">
             {/* Page Header */}
@@ -64,8 +76,8 @@ export default function Reports() {
                         key={report.id}
                         onClick={() => setSelectedReport(report.id)}
                         className={`text-left p-4 rounded-lg border-2 transition-all ${selectedReport === report.id
-                                ? 'border-blue-600 bg-blue-50'
-                                : 'border-gray-200 bg-white hover:border-blue-300'
+                            ? 'border-blue-600 bg-blue-50'
+                            : 'border-gray-200 bg-white hover:border-blue-300'
                             }`}
                     >
                         <div className="flex items-start gap-3">
@@ -114,7 +126,10 @@ export default function Reports() {
                     </div>
 
                     <div className="flex items-end">
-                        <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex items-center justify-center gap-2">
+                        <button
+                            onClick={handleApplyFilters}
+                            className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex items-center justify-center gap-2"
+                        >
                             <Filter size={18} />
                             Apply Filters
                         </button>
@@ -149,7 +164,10 @@ export default function Reports() {
                                 <h2 className="text-xl font-bold text-gray-900">Executive Summary Report</h2>
                                 <p className="text-sm text-gray-600 mt-1">Period: {dateRange === 'monthly' ? 'November 2024' : 'Custom Period'}</p>
                             </div>
-                            <button className="flex items-center gap-2 px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50">
+                            <button
+                                onClick={handlePrint}
+                                className="flex items-center gap-2 px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50"
+                            >
                                 <Printer size={18} />
                                 Print
                             </button>
@@ -308,7 +326,10 @@ export default function Reports() {
                         <p className="text-gray-600 mb-4">
                             {reportTypes.find(r => r.id === selectedReport)?.description}
                         </p>
-                        <button className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        <button
+                            onClick={handleGenerateReport}
+                            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                        >
                             Generate Report
                         </button>
                     </div>

@@ -55,6 +55,12 @@ export default function Alerts() {
         }
     ];
 
+    const [activeAlerts, setActiveAlerts] = useState(alerts);
+
+    const handleDismiss = (id) => {
+        setActiveAlerts(prev => prev.filter(alert => alert.id !== id));
+    };
+
     const getAlertIcon = (type) => {
         switch (type) {
             case 'critical':
@@ -86,10 +92,10 @@ export default function Alerts() {
     };
 
     const filteredAlerts = selectedFilter === 'all'
-        ? alerts
-        : alerts.filter(alert => alert.type === selectedFilter);
+        ? activeAlerts
+        : activeAlerts.filter(alert => alert.type === selectedFilter);
 
-    const unreadCount = alerts.filter(a => !a.read).length;
+    const unreadCount = activeAlerts.filter(a => !a.read).length;
 
     return (
         <div className="space-y-6">
@@ -109,7 +115,7 @@ export default function Alerts() {
                                 {unreadCount} Unread
                             </span>
                             <span className="text-xs text-gray-500">
-                                {alerts.length} Total Alerts
+                                {activeAlerts.length} Total Alerts
                             </span>
                         </div>
                     </div>
@@ -126,8 +132,8 @@ export default function Alerts() {
                             key={filter}
                             onClick={() => setSelectedFilter(filter)}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${selectedFilter === filter
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             {filter.charAt(0).toUpperCase() + filter.slice(1)}
@@ -161,7 +167,10 @@ export default function Alerts() {
                                             <p className="text-sm text-gray-700 mt-1">{alert.message}</p>
                                             <p className="text-xs text-gray-500 mt-2">{alert.timestamp}</p>
                                         </div>
-                                        <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                                        <button
+                                            onClick={() => handleDismiss(alert.id)}
+                                            className="text-gray-400 hover:text-gray-600 transition-colors"
+                                        >
                                             <X size={20} />
                                         </button>
                                     </div>

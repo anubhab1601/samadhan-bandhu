@@ -1,7 +1,7 @@
 import React from 'react';
 import { Building, MapPin, Hash, Calendar, CreditCard, FileText, Upload, X } from 'lucide-react';
 
-export function SarpanchForm({ formData, handleInputChange, errors }) {
+export function BlockOfficerForm({ formData, handleInputChange, errors }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Village Name */}
@@ -65,23 +65,23 @@ export function SarpanchForm({ formData, handleInputChange, errors }) {
                 />
             </div>
 
-            {/* Official Sarpanch ID */}
+            {/* Official Block Officer ID */}
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Official Sarpanch ID/Letter Number *
+                    Official Block Officer ID/Letter Number *
                 </label>
                 <div className="relative">
                     <Hash className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                     <input
                         type="text"
-                        value={formData.sarpanchId}
-                        onChange={(e) => handleInputChange('sarpanchId', e.target.value)}
-                        className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.sarpanchId ? 'border-red-500' : 'border-gray-300'
+                        value={formData.blockOfficerId}
+                        onChange={(e) => handleInputChange('blockOfficerId', e.target.value)}
+                        className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.blockOfficerId ? 'border-red-500' : 'border-gray-300'
                             }`}
-                        placeholder="Enter Sarpanch ID"
+                        placeholder="Enter Block Officer ID"
                     />
                 </div>
-                {errors.sarpanchId && <p className="text-red-500 text-xs mt-1">{errors.sarpanchId}</p>}
+                {errors.blockOfficerId && <p className="text-red-500 text-xs mt-1">{errors.blockOfficerId}</p>}
             </div>
 
             {/* Tenure Period */}
@@ -425,52 +425,7 @@ export function StateOfficerForm({ formData, handleInputChange, errors }) {
     );
 }
 
-export function IVAOfficerForm({ formData, handleInputChange, errors }) {
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Organization/Agency Name *
-                </label>
-                <input
-                    type="text"
-                    value={formData.ivaOrganization}
-                    onChange={(e) => handleInputChange('ivaOrganization', e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.ivaOrganization ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                    placeholder="Enter organization name"
-                />
-                {errors.ivaOrganization && <p className="text-red-500 text-xs mt-1">{errors.ivaOrganization}</p>}
-            </div>
 
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Designation
-                </label>
-                <input
-                    type="text"
-                    value={formData.ivaDesignation}
-                    onChange={(e) => handleInputChange('ivaDesignation', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="e.g., Verification Officer"
-                />
-            </div>
-
-            <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Office Address
-                </label>
-                <textarea
-                    rows="3"
-                    value={formData.ivaOfficeAddress}
-                    onChange={(e) => handleInputChange('ivaOfficeAddress', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="Enter complete office address"
-                />
-            </div>
-        </div>
-    );
-}
 
 export function CenterOfficerForm({ formData, handleInputChange, errors }) {
     return (

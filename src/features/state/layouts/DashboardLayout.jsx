@@ -107,14 +107,20 @@ export default function DashboardLayout() {
                 <div className="max-w-7xl mx-auto">
                     <ul className="flex items-center text-sm font-medium">
                         <li>
-                            <Link to="/" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
+                            <Link to="/state" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
                                 {t('nav_home')}
                             </Link>
                         </li>
 
                         <li>
-                            <Link to="/dashboard" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
+                            <Link to="/state/dashboard" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
                                 {t('nav_dashboard')}
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/state/applications" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
+                                Applications
                             </Link>
                         </li>
 
@@ -127,9 +133,10 @@ export default function DashboardLayout() {
                             </button>
                             {activeDropdown === 'applications' && (
                                 <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[200px] border border-gray-200 z-50">
-                                    <Link to="/applications/pending" className="block px-4 py-2 hover:bg-blue-50">{t('drop_pending_applications')}</Link>
-                                    <Link to="/applications/approved" className="block px-4 py-2 hover:bg-blue-50">{t('drop_approved_applications')}</Link>
-                                    <Link to="/applications" className="block px-4 py-2 hover:bg-blue-50">{t('drop_all_applications')}</Link>
+                                    <Link to="/state/applications/incoming" className="block px-4 py-2 hover:bg-blue-50">Incoming Applications</Link>
+                                    <Link to="/state/applications/pending" className="block px-4 py-2 hover:bg-blue-50">{t('drop_pending_applications')}</Link>
+                                    <Link to="/state/applications/approved" className="block px-4 py-2 hover:bg-blue-50">{t('drop_approved_applications')}</Link>
+                                    <Link to="/state/applications" className="block px-4 py-2 hover:bg-blue-50">{t('drop_all_applications')}</Link>
                                 </div>
                             )}
                         </li>
@@ -143,9 +150,9 @@ export default function DashboardLayout() {
                             </button>
                             {activeDropdown === 'verification' && (
                                 <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[200px] border border-gray-200 z-50">
-                                    <Link to="/verification/assign" className="block px-4 py-2 hover:bg-blue-50">{t('drop_assign_iva')}</Link>
-                                    <Link to="/verification/reports" className="block px-4 py-2 hover:bg-blue-50">{t('drop_verification_reports')}</Link>
-                                    <Link to="/verification/forward" className="block px-4 py-2 hover:bg-blue-50">{t('drop_forward_to_pmajay')}</Link>
+                                    <Link to="/state/verification/assign" className="block px-4 py-2 hover:bg-blue-50">{t('drop_assign_iva')}</Link>
+                                    <Link to="/state/verification/reports" className="block px-4 py-2 hover:bg-blue-50">{t('drop_verification_reports')}</Link>
+                                    <Link to="/state/verification/forward" className="block px-4 py-2 hover:bg-blue-50">{t('drop_forward_to_pmajay')}</Link>
                                 </div>
                             )}
                         </li>
@@ -159,9 +166,12 @@ export default function DashboardLayout() {
                             </button>
                             {activeDropdown === 'projects' && (
                                 <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[220px] border border-gray-200 z-50">
-                                    <Link to="/projects/ongoing" className="block px-4 py-2 hover:bg-blue-50">{t('drop_ongoing_projects')}</Link>
-                                    <Link to="/projects/completed" className="block px-4 py-2 hover:bg-blue-50">{t('drop_completed_projects')}</Link>
-                                    <Link to="/funds" className="block px-4 py-2 hover:bg-blue-50">State Fund Management</Link>
+                                    <Link to="/state/projects" className="block px-4 py-2 hover:bg-blue-50">All Projects</Link>
+                                    <Link to="/state/projects/ongoing" className="block px-4 py-2 hover:bg-blue-50">{t('drop_ongoing_projects')}</Link>
+                                    <Link to="/state/projects/completed" className="block px-4 py-2 hover:bg-blue-50">{t('drop_completed_projects')}</Link>
+                                    <Link to="/state/projects/PROJ-2025-MH-001/tender-review" className="block px-4 py-2 hover:bg-blue-50">Tender & Agency Review</Link>
+                                    <Link to="/state/funds" className="block px-4 py-2 hover:bg-blue-50">State Fund Management</Link>
+                                    <Link to="/state/funds/blocks" className="block px-4 py-2 hover:bg-blue-50">Block Fund Releases</Link>
                                 </div>
                             )}
                         </li>
@@ -175,8 +185,35 @@ export default function DashboardLayout() {
                             </button>
                             {activeDropdown === 'inspections' && (
                                 <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[200px] border border-gray-200 z-50">
-                                    <Link to="/inspections/schedule" className="block px-4 py-2 hover:bg-blue-50">{t('drop_schedule_inspection')}</Link>
-                                    <Link to="/inspections/reports" className="block px-4 py-2 hover:bg-blue-50">{t('drop_inspection_reports')}</Link>
+                                    <Link to="/state/inspections/schedule" className="block px-4 py-2 hover:bg-blue-50">{t('drop_schedule_inspection')}</Link>
+                                    <Link to="/state/inspections/reports" className="block px-4 py-2 hover:bg-blue-50">{t('drop_inspection_reports')}</Link>
+                                </div>
+                            )}
+                        </li>
+
+                        <li>
+                            <Link to="/state/districts" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
+                                Districts
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to="/state/reports" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
+                                Reports
+                            </Link>
+                        </li>
+
+                        <li className="relative">
+                            <button
+                                onClick={() => toggleDropdown('users')}
+                                className="flex items-center gap-1 py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400"
+                            >
+                                User Management <ChevronDown size={16} />
+                            </button>
+                            {activeDropdown === 'users' && (
+                                <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[220px] border border-gray-200 z-50">
+                                    <Link to="/state/users/pending" className="block px-4 py-2 hover:bg-blue-50">Pending Registrations</Link>
+                                    <Link to="/state/users/sarpanch" className="block px-4 py-2 hover:bg-blue-50">Sarpanch Requests</Link>
                                 </div>
                             )}
                         </li>

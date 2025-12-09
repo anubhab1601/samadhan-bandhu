@@ -12,7 +12,7 @@ export default function Payments() {
 
     // Sample payment data
     const payments = [
-        { id: 'PAY-2024-001', project: 'Village Development - Mysore', beneficiary: 'Karnataka State Agency', amount: '1.25 Cr', installment: '1 of 2', status: 'Pending', dueDate: '2024-11-25', accountNo: '****6789', ifsc: 'SBIN0001234' },
+        { id: 'PAY-2024-001', project: 'Adarsh Gram Development - Mysore', beneficiary: 'Karnataka State Agency', amount: '1.25 Cr', installment: '1 of 2', status: 'Pending', dueDate: '2024-11-25', accountNo: '****6789', ifsc: 'SBIN0001234' },
         { id: 'PAY-2024-002', project: 'Skill Development Centre - Patna', beneficiary: 'Bihar Education Board', amount: '0.75 Cr', installment: '1 of 2', status: 'Pending', dueDate: '2024-11-26', accountNo: '****4521', ifsc: 'HDFC0002345' },
         { id: 'PAY-2024-003', project: 'Healthcare Center - Kolkata', beneficiary: 'WB Health Department', amount: '1.50 Cr', installment: '1 of 2', status: 'Processing', dueDate: '2024-11-22', accountNo: '****7890', ifsc: 'ICIC0003456' },
         { id: 'PAY-2024-004', project: 'Community Hall - Jaipur', beneficiary: 'Rajasthan Development Corp', amount: '0.90 Cr', installment: '1 of 1', status: 'Completed', dueDate: '2024-11-01', accountNo: '****1234', ifsc: 'SBIN0004567' },

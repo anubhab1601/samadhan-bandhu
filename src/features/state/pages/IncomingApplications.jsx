@@ -239,7 +239,7 @@ export default function StateIncomingApplications() {
                                         </td>
                                         <td className="px-6 py-4">
                                             <button
-                                                onClick={() => navigate(`/state/applications/${app.id}`)}
+                                                onClick={() => navigate(`/applications/${app.id}`)}
                                                 className="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
                                             >
                                                 <Eye size={16} />

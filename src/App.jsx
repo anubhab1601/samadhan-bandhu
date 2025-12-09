@@ -9,24 +9,46 @@ import DashboardLayout from './shared/layouts/DashboardLayout';
 // Import dashboards
 import CentralDashboard from './features/central/pages/Dashboard';
 import CentralIncomingApplications from './features/central/pages/IncomingApplications';
+import CentralProjects from './features/central/pages/Projects';
+import CentralCreateProject from './features/central/pages/CreateProject';
+import CentralProjectDetails from './features/central/pages/ProjectDetails';
+import CentralFundAllocation from './features/central/pages/FundAllocation';
+import CentralFundTransaction from './features/central/pages/FundTransaction';
+import CentralReports from './features/central/pages/Reports';
+import CentralGISMapping from './features/central/pages/GISMapping';
+import CentralAnalytics from './features/central/pages/Analytics';
+import CentralAlerts from './features/central/pages/Alerts';
+import CentralProfile from './features/central/pages/Profile';
+import CentralSettings from './features/central/pages/Settings';
 import CentralApplicationDetails from './features/central/pages/ApplicationDetails';
+import CentralBroadcast from './features/central/pages/Broadcast';
 import StateDashboard from './features/state/pages/Dashboard';
 import StateApplications from './features/state/pages/Applications';
 import StateApplicationDetails from './features/state/pages/ApplicationDetails';
-import SarpanchDashboard from './features/sarpanch/pages/Dashboard';
-import SarpanchApplications from './features/sarpanch/pages/Applications';
-import SarpanchNewApplication from './features/sarpanch/pages/NewApplication';
-import SarpanchApplicationDetails from './features/sarpanch/pages/ApplicationDetails';
-import SarpanchTrackApplication from './features/sarpanch/pages/TrackApplication';
-import SarpanchProfile from './features/sarpanch/pages/Profile';
-import SarpanchNotifications from './features/sarpanch/pages/Notifications';
-import SarpanchFundTracking from './features/sarpanch/pages/FundTracking';
-import SarpanchRegistration from './features/sarpanch/pages/Registration';
-import SarpanchTenders from './features/sarpanch/pages/Tenders';
-import SarpanchReleaseTender from './features/sarpanch/pages/ReleaseTender';
-import SarpanchTenderApplications from './features/sarpanch/pages/TenderApplications';
-import SarpanchOngoingProjects from './features/sarpanch/pages/OngoingProjects';
-import SarpanchCompletedProjects from './features/sarpanch/pages/CompletedProjects';
+import StateVerification from './features/state/pages/Verification';
+import StateProjects from './features/state/pages/Projects';
+import StateInspections from './features/state/pages/Inspections';
+import StateFundManagement from './features/state/pages/FundManagement';
+import StateDistricts from './features/state/pages/Districts';
+import StateDistrictDetails from './features/state/pages/DistrictDetails';
+import StateReports from './features/state/pages/Reports';
+import StatePendingRegistrations from './features/state/pages/StatePendingRegistrations';
+import StateBlockRequests from './features/state/pages/BlockRequests';
+import StateBlockRequestDetails from './features/state/pages/BlockRequestDetails';
+import StateTenderAgencyReview from './features/state/pages/TenderAgencyReview';
+import StateProfile from './features/state/pages/Profile';
+import StateBlockFundReleases from './features/state/pages/BlockFundReleases';
+// Block imports (formerly sarpanch)
+import BlockDashboard from './features/block/pages/Dashboard';
+import BlockProfile from './features/block/pages/Profile';
+import BlockNotifications from './features/block/pages/Notifications';
+import BlockFundManagement from './features/block/pages/FundTracking';
+import BlockRegistration from './features/block/pages/Registration';
+import BlockTenders from './features/block/pages/Tenders';
+import BlockReleaseTender from './features/block/pages/ReleaseTender';
+import BlockTenderApplications from './features/block/pages/TenderApplications';
+import BlockOngoingProjects from './features/block/pages/OngoingProjects';
+import BlockCompletedProjects from './features/block/pages/CompletedProjects';
 import FieldOfficerDashboard from './features/field-officer/pages/Dashboard';
 import FieldOfficerInspections from './features/field-officer/pages/Inspections';
 import FieldOfficerInspectionDetails from './features/field-officer/pages/InspectionDetails';
@@ -51,20 +73,6 @@ import AgencyPayments from './features/agency/pages/Payments';
 import AgencyWorkers from './features/agency/pages/Workers';
 import AgencySchedule from './features/agency/pages/Schedule';
 import AgencyProfile from './features/agency/pages/Profile';
-import IVAOfficerDashboard from './features/iva-officer/pages/Dashboard';
-import IVAAssignments from './features/iva-officer/pages/Assignments';
-import IVAReports from './features/iva-officer/pages/Reports';
-import IVAVerifications from './features/iva-officer/pages/Verifications';
-import IVAVillageVerificationDetail from './features/iva-officer/pages/VillageVerificationDetail';
-import IVACommitteeVerificationDetail from './features/iva-officer/pages/CommitteeVerificationDetail';
-import IVAAgencyVerificationDetail from './features/iva-officer/pages/AgencyVerificationDetail';
-import IVAVerificationHistory from './features/iva-officer/pages/VerificationHistory';
-import IVAHistoryDetailView from './features/iva-officer/pages/HistoryDetailView';
-import IVANotifications from './features/iva-officer/pages/Notifications';
-import IVASchedule from './features/iva-officer/pages/Schedule';
-import IVATasks from './features/iva-officer/pages/Tasks';
-import IVARegistration from './features/iva-officer/pages/Registration';
-import IVAProfile from './features/iva-officer/pages/Profile';
 
 function App() {
   return (
@@ -89,6 +97,18 @@ function App() {
             <Route path="dashboard" element={<CentralDashboard />} />
             <Route path="applications" element={<CentralIncomingApplications />} />
             <Route path="applications/:id" element={<CentralApplicationDetails />} />
+            <Route path="projects" element={<CentralProjects />} />
+            <Route path="projects/new" element={<CentralCreateProject />} />
+            <Route path="projects/:id" element={<CentralProjectDetails />} />
+            <Route path="funds" element={<CentralFundAllocation />} />
+            <Route path="funds/transaction" element={<CentralFundTransaction />} />
+            <Route path="reports" element={<CentralReports />} />
+            <Route path="gis" element={<CentralGISMapping />} />
+            <Route path="analytics" element={<CentralAnalytics />} />
+            <Route path="alerts" element={<CentralAlerts />} />
+            <Route path="profile" element={<CentralProfile />} />
+            <Route path="settings" element={<CentralSettings />} />
+            <Route path="broadcast" element={<CentralBroadcast />} />
           </Route>
 
           {/* State routes */}
@@ -104,36 +124,62 @@ function App() {
             <Route path="dashboard" element={<StateDashboard />} />
             <Route path="applications" element={<StateApplications />} />
             <Route path="applications/:id" element={<StateApplicationDetails />} />
+
+            {/* Verification Routes */}
+            <Route path="verification/assign" element={<StateVerification />} />
+
+            {/* Projects Routes */}
+            <Route path="projects" element={<StateProjects />} />
+            <Route path="projects/ongoing" element={<StateProjects />} />
+            <Route path="projects/completed" element={<StateProjects />} />
+            <Route path="projects/:projectId/tender-review" element={<StateTenderAgencyReview />} />
+
+            {/* Inspections Routes */}
+            <Route path="inspections/schedule" element={<StateInspections />} />
+            <Route path="inspections/reports" element={<StateInspections />} />
+
+            {/* Fund Management Routes */}
+            <Route path="funds" element={<StateFundManagement />} />
+            <Route path="funds/blocks" element={<StateBlockFundReleases />} />
+
+            {/* Districts Routes */}
+            <Route path="districts" element={<StateDistricts />} />
+            <Route path="districts/:id" element={<StateDistrictDetails />} />
+
+            {/* Reports Routes */}
+            <Route path="reports" element={<StateReports />} />
+
+            {/* User Management Routes */}
+            <Route path="users/pending" element={<StatePendingRegistrations />} />
+            <Route path="users/block" element={<StateBlockRequests />} />
+            <Route path="requests" element={<StateBlockRequests />} />
+            <Route path="requests/details" element={<StateBlockRequestDetails />} />
+            <Route path="profile" element={<StateProfile />} />
           </Route>
 
-          {/* Sarpanch routes */}
+          {/* Block routes */}
           <Route
-            path="/sarpanch/*"
+            path="/block/*"
             element={
-              <RoleBasedRoute allowedRoles={['sarpanch']}>
-                <DashboardLayout role="sarpanch" />
+              <RoleBasedRoute allowedRoles={['block']}>
+                <DashboardLayout role="block" />
               </RoleBasedRoute>
             }
           >
-            <Route index element={<Navigate to="/sarpanch/dashboard" replace />} />
-            <Route path="dashboard" element={<SarpanchDashboard />} />
-            <Route path="new-application" element={<SarpanchNewApplication />} />
-            <Route path="applications" element={<SarpanchApplications />} />
-            <Route path="applications/:id" element={<SarpanchApplicationDetails />} />
-            <Route path="track-application" element={<SarpanchTrackApplication />} />
-            <Route path="track-application/:id" element={<SarpanchTrackApplication />} />
-            <Route path="tenders" element={<SarpanchTenders />} />
-            <Route path="release-tender" element={<SarpanchReleaseTender />} />
-            <Route path="tender-applications" element={<SarpanchTenderApplications />} />
-            <Route path="ongoing-projects" element={<SarpanchOngoingProjects />} />
-            <Route path="completed-projects" element={<SarpanchCompletedProjects />} />
-            <Route path="notifications" element={<SarpanchNotifications />} />
-            <Route path="fund-tracking" element={<SarpanchFundTracking />} />
-            <Route path="profile" element={<SarpanchProfile />} />
+            <Route index element={<Navigate to="/block/dashboard" replace />} />
+            <Route path="dashboard" element={<BlockDashboard />} />
+            <Route path="fund-management" element={<BlockFundManagement />} />
+            <Route path="tenders" element={<BlockTenders />} />
+            <Route path="release-tender" element={<BlockReleaseTender />} />
+            <Route path="tender-applications" element={<BlockTenderApplications />} />
+            <Route path="ongoing-projects" element={<BlockOngoingProjects />} />
+            <Route path="completed-projects" element={<BlockCompletedProjects />} />
+            <Route path="notifications" element={<BlockNotifications />} />
+            <Route path="profile" element={<BlockProfile />} />
           </Route>
 
-          {/* Sarpanch Registration (Public) */}
-          <Route path="/sarpanch/register" element={<SarpanchRegistration />} />
+          {/* Block Registration (Public) */}
+          <Route path="/block/register" element={<BlockRegistration />} />
 
           {/* Field Officer routes */}
           <Route
@@ -185,36 +231,6 @@ function App() {
             <Route path="schedule" element={<AgencySchedule />} />
             <Route path="profile" element={<AgencyProfile />} />
           </Route>
-
-          {/* IVA Officer routes */}
-          <Route
-            path="/iva-officer/*"
-            element={
-              <RoleBasedRoute allowedRoles={['iva-officer']}>
-                <DashboardLayout role="iva-officer" />
-              </RoleBasedRoute>
-            }
-          >
-            <Route index element={<Navigate to="/iva-officer/dashboard" replace />} />
-            <Route path="dashboard" element={<IVAOfficerDashboard />} />
-            <Route path="assignments" element={<IVAAssignments />} />
-            <Route path="reports" element={<IVAReports />} />
-            <Route path="verifications" element={<IVAVerifications />} />
-            <Route path="verifications/village/:id" element={<IVAVillageVerificationDetail />} />
-            <Route path="verifications/committee/:id" element={<IVACommitteeVerificationDetail />} />
-            <Route path="verifications/agency/:id" element={<IVAAgencyVerificationDetail />} />
-            <Route path="history" element={<IVAVerificationHistory />} />
-            <Route path="history/village/:id" element={<IVAHistoryDetailView />} />
-            <Route path="history/committee/:id" element={<IVAHistoryDetailView />} />
-            <Route path="history/agency/:id" element={<IVAHistoryDetailView />} />
-            <Route path="notifications" element={<IVANotifications />} />
-            <Route path="schedule" element={<IVASchedule />} />
-            <Route path="tasks" element={<IVATasks />} />
-            <Route path="profile" element={<IVAProfile />} />
-          </Route>
-
-          {/* IVA Officer Registration (Public) */}
-          <Route path="/iva-officer/register" element={<IVARegistration />} />
 
           {/* Default redirect */}
           <Route path="/" element={<Navigate to="/login" replace />} />

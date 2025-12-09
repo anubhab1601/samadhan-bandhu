@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ClipboardCheck, FileText, MapPin, Clock, CheckCircle, AlertCircle, ArrowRight, Calendar, TrendingUp, Eye, Upload, Bell } from 'lucide-react';
+import BroadcastDisplay from '../../../shared/components/BroadcastDisplay';
 
 export default function Dashboard() {
     const navigate = useNavigate();
@@ -97,6 +98,7 @@ export default function Dashboard() {
 
     return (
         <div className="space-y-6">
+            <BroadcastDisplay role="field-officer" />
             {/* Header */}
             <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 p-6 rounded-lg shadow-lg text-white">
                 <h1 className="text-3xl font-bold mb-2">Field Officer Dashboard</h1>
@@ -329,7 +331,7 @@ export default function Dashboard() {
                     {recentNotifications.map((notification) => (
                         <div key={notification.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                             <div className={`p-2 rounded-full ${notification.type === 'assignment' ? 'bg-blue-100' :
-                                    notification.type === 'change' ? 'bg-yellow-100' : 'bg-orange-100'
+                                notification.type === 'change' ? 'bg-yellow-100' : 'bg-orange-100'
                                 }`}>
                                 <Bell className={
                                     notification.type === 'assignment' ? 'text-blue-600' :

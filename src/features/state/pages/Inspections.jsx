@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Filter, Calendar, UserPlus, Eye, CheckCircle, Clock, AlertCircle, MapPin, FileText } from 'lucide-react';
 
 export default function Inspections() {
+    const navigate = useNavigate();
     const [inspections, setInspections] = useState([
         {
             id: 'INS-2025-001',
@@ -321,7 +323,10 @@ export default function Inspections() {
                                             View Report
                                         </button>
                                     )}
-                                    <button className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center gap-2">
+                                    <button
+                                        onClick={() => navigate('/state/projects')}
+                                        className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center gap-2"
+                                    >
                                         <FileText size={18} />
                                         View Project
                                     </button>

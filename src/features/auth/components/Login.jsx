@@ -6,18 +6,17 @@ import { useAuth } from '../context/AuthContext';
 const ROLE_ROUTES = {
     'central': '/central/dashboard',
     'state': '/state/dashboard',
-    'sarpanch': '/sarpanch/dashboard',
+    'block': '/block/dashboard',
     'field-officer': '/field-officer/dashboard',
-    'agency': '/agency/dashboard',
-    'iva-officer': '/iva-officer/dashboard'
+    'agency': '/agency/dashboard'
 };
 
 const ROLE_OPTIONS = [
     {
-        value: 'sarpanch',
-        label: 'Sarpanch',
-        icon: '👤',
-        description: 'Village head/representative',
+        value: 'block',
+        label: 'Block Officer',
+        icon: '🏘️',
+        description: 'Block-level fund management',
         color: 'purple'
     },
     {
@@ -40,13 +39,6 @@ const ROLE_OPTIONS = [
         icon: '🏢',
         description: 'State government officer',
         color: 'blue'
-    },
-    {
-        value: 'iva-officer',
-        label: 'IVA Officer',
-        icon: '✅',
-        description: 'Information Verifying Agency officer',
-        color: 'green'
     },
     {
         value: 'central',

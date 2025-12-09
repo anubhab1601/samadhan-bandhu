@@ -124,6 +124,7 @@ export default function DashboardLayout() {
                                 <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[200px] border border-gray-200 z-50">
                                     <Link to="/dashboard" className="block px-4 py-2 hover:bg-blue-50">{t('nav_dashboard')}</Link>
                                     <Link to="/analytics" className="block px-4 py-2 hover:bg-blue-50">{t('drop_analytics')}</Link>
+                                    <Link to="/broadcast" className="block px-4 py-2 hover:bg-blue-50">Broadcast</Link>
                                 </div>
                             )}
                         </li>
@@ -144,10 +145,19 @@ export default function DashboardLayout() {
                             )}
                         </li>
 
-                        <li>
-                            <Link to="/funds" className="block py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400">
-                                {t('nav_funds')}
-                            </Link>
+                        <li className="relative">
+                            <button
+                                onClick={() => toggleDropdown('funds')}
+                                className="flex items-center gap-1 py-3.5 px-5 hover:bg-[#1565c0] transition-colors border-b-2 border-transparent hover:border-orange-400"
+                            >
+                                {t('nav_funds')} <ChevronDown size={16} />
+                            </button>
+                            {activeDropdown === 'funds' && (
+                                <div className="absolute top-full left-0 bg-white text-gray-800 shadow-lg min-w-[200px] border border-gray-200 z-50">
+                                    <Link to="/funds" className="block px-4 py-2 hover:bg-blue-50">Fund Allocation</Link>
+                                    <Link to="/fund-management" className="block px-4 py-2 hover:bg-blue-50">Hierarchical Fund Management</Link>
+                                </div>
+                            )}
                         </li>
 
                         <li>

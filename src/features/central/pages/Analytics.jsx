@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { BarChart3, PieChart, TrendingUp, Calendar, Filter, Download, ArrowUpRight, ArrowDownRight, IndianRupee, Layers, Activity, Target } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
+import { BarChart3, TrendingUp, Download, Filter, IndianRupee, Layers, Activity, Target } from 'lucide-react';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function Analytics() {
-    const { t } = useLanguage();
     const [timeRange, setTimeRange] = useState('year');
 
     // Mock Data
     const kpiData = [
-        { title: "Total Budget Allocated", value: "₹12,500 Cr", change: "+15%", trend: "up", icon: <IndianRupee />, color: "from-blue-500 to-blue-600", shadow: "shadow-blue-500/30" },
-        { title: "Funds Utilized", value: "₹8,240 Cr", change: "+8%", trend: "up", icon: <TrendingUp />, color: "from-green-500 to-green-600", shadow: "shadow-green-500/30" },
-        { title: "Total Projects", value: "1,245", change: "+124", trend: "up", icon: <Layers />, color: "from-purple-500 to-purple-600", shadow: "shadow-purple-500/30" },
-        { title: "Completion Rate", value: "68%", change: "-2%", trend: "down", icon: <Activity />, color: "from-orange-500 to-orange-600", shadow: "shadow-orange-500/30" }
+        { title: "Total Budget", value: "₹12,500 Cr", icon: IndianRupee, color: "bg-blue-500" },
+        { title: "Funds Utilized", value: "₹8,240 Cr", icon: TrendingUp, color: "bg-green-500" },
+        { title: "Total Projects", value: "1,245", icon: Layers, color: "bg-purple-500" },
+        { title: "Completion Rate", value: "68%", icon: Activity, color: "bg-orange-500" }
     ];
 
     const statePerformance = [
@@ -22,94 +22,90 @@ export default function Analytics() {
         { state: "Maharashtra", budget: 3500, spent: 2800, progress: 80 },
     ];
 
+    const schemeData = [
+        { name: "Adarsh Gram", budget: 6000, spent: 4200, color: "#3b82f6" },
+        { name: "GIA", budget: 4000, spent: 2800, color: "#10b981" },
+        { name: "Hostels", budget: 2500, spent: 1240, color: "#f59e0b" }
+    ];
+
+    const monthlyExpenditure = [
+        { month: 'Apr', spent: 450 },
+        { month: 'May', spent: 520 },
+        { month: 'Jun', spent: 480 },
+        { month: 'Jul', spent: 610 },
+        { month: 'Aug', spent: 580 },
+        { month: 'Sep', spent: 650 },
+    ];
+
     return (
-        <div className="space-y-8 p-6 pb-24 bg-gray-50 min-h-screen">
+        <div className="p-6 bg-gray-50 min-h-screen">
             {/* Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight drop-shadow-sm">
-                        {t('analytics_title') || "Scheme Analytics"}
-                    </h1>
-                    <p className="text-gray-600 mt-2 text-lg font-medium">
-                        {t('analytics_subtitle') || "Comprehensive view of scheme performance and fund utilization"}
-                    </p>
-                </div>
-                <div className="flex gap-3">
-                    <select
-                        className="bg-white border border-gray-200 text-gray-700 py-2.5 px-5 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm hover:shadow-md transition-all font-medium cursor-pointer"
-                        value={timeRange}
-                        onChange={(e) => setTimeRange(e.target.value)}
-                    >
-                        <option value="month">This Month</option>
-                        <option value="quarter">This Quarter</option>
-                        <option value="year">This Year</option>
-                    </select>
-                    <button className="flex items-center gap-2 bg-white border border-gray-200 text-gray-700 py-2.5 px-5 rounded-xl hover:bg-gray-50 shadow-sm hover:shadow-md transition-all font-medium">
-                        <Filter size={18} /> Filter
-                    </button>
-                    <button className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2.5 px-5 rounded-xl hover:from-blue-700 hover:to-blue-800 shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 font-medium">
-                        <Download size={18} /> Export
-                    </button>
-                </div>
+            <div className="bg-white border-l-4 border-l-blue-600 p-4 rounded-r-lg shadow-sm mb-6">
+                <h1 className="text-2xl font-bold text-gray-900">Scheme Analytics</h1>
+                <p className="text-sm text-gray-600 mt-1">Comprehensive view of scheme performance and fund utilization</p>
             </div>
 
-            {/* KPI Cards - 3D Style */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {kpiData.map((kpi, index) => (
-                    <div key={index} className="relative group">
-                        <div className={`absolute inset-0 bg-gradient-to-r ${kpi.color} rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300 -z-10 transform translate-y-2`}></div>
-                        <div className="bg-white p-6 rounded-2xl shadow-xl border border-white/50 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-4 opacity-10">
-                                {React.cloneElement(kpi.icon, { size: 80 })}
-                            </div>
+            {/* Filters */}
+            <div className="flex gap-3 mb-6">
+                <select
+                    className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={timeRange}
+                    onChange={(e) => setTimeRange(e.target.value)}
+                >
+                    <option value="month">This Month</option>
+                    <option value="quarter">This Quarter</option>
+                    <option value="year">This Year</option>
+                </select>
+                <button className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-50">
+                    <Filter size={18} /> Filter
+                </button>
+                <button className="flex items-center gap-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                    <Download size={18} /> Export
+                </button>
+            </div>
 
-                            <div className="flex justify-between items-start mb-4 relative z-10">
-                                <div className={`bg-gradient-to-br ${kpi.color} p-3 rounded-xl text-white shadow-lg ${kpi.shadow}`}>
-                                    {React.cloneElement(kpi.icon, { size: 24 })}
-                                </div>
-                                <div className={`flex items-center gap-1 text-sm font-bold px-2 py-1 rounded-lg ${kpi.trend === 'up' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
-                                    {kpi.trend === 'up' ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
-                                    {kpi.change}
-                                </div>
-                            </div>
-                            <h3 className="text-gray-500 text-sm font-semibold uppercase tracking-wider">{kpi.title}</h3>
-                            <p className="text-3xl font-black text-gray-900 mt-1">{kpi.value}</p>
+            {/* KPI Cards - White Simple */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                {kpiData.map((kpi, index) => (
+                    <div key={index} className="bg-white p-6 rounded-lg shadow">
+                        <div className="flex items-center justify-between mb-3">
+                            <kpi.icon size={32} className="text-blue-600" />
                         </div>
+                        <div className="text-3xl font-bold text-gray-900 mb-1">{kpi.value}</div>
+                        <div className="text-sm text-gray-600">{kpi.title}</div>
                     </div>
                 ))}
             </div>
 
-            {/* Charts Section - 3D Style */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Fund Utilization Chart */}
-                <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-                    <div className="flex justify-between items-center mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Fund Utilization */}
+                <div className="bg-white p-6 rounded-lg shadow">
+                    <div className="flex justify-between items-center mb-4">
                         <div>
-                            <h3 className="text-xl font-bold text-gray-900">Fund Utilization</h3>
+                            <h3 className="text-lg font-bold text-gray-900">Fund Utilization</h3>
                             <p className="text-sm text-gray-500">State-wise budget vs spent</p>
                         </div>
-                        <button className="text-blue-600 text-sm font-bold hover:bg-blue-50 px-3 py-1 rounded-lg transition-colors">View Details</button>
+                        <Link to="/central/funds" className="text-orange-500 text-sm font-medium hover:underline">
+                            View All →
+                        </Link>
                     </div>
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         {statePerformance.map((item, index) => (
-                            <div key={index} className="group">
-                                <div className="flex justify-between text-sm mb-2">
-                                    <span className="font-bold text-gray-700">{item.state}</span>
-                                    <span className="font-medium text-gray-500">{item.progress}%</span>
+                            <div key={index}>
+                                <div className="flex justify-between text-sm mb-1">
+                                    <span className="font-medium text-gray-700">{item.state}</span>
+                                    <span className="text-gray-500">{item.progress}%</span>
                                 </div>
-                                <div className="w-full bg-gray-100 rounded-full h-4 shadow-inner overflow-hidden">
+                                <div className="w-full bg-gray-200 rounded-full h-3">
                                     <div
-                                        className={`h-full rounded-full bg-gradient-to-r ${item.progress > 80 ? 'from-green-500 to-green-400' :
-                                                item.progress > 60 ? 'from-blue-500 to-blue-400' :
-                                                    'from-orange-500 to-orange-400'
-                                            } shadow-lg relative group-hover:brightness-110 transition-all duration-500`}
+                                        className={`h-3 rounded-full ${item.progress > 80 ? 'bg-green-500' :
+                                            item.progress > 60 ? 'bg-blue-500' :
+                                                'bg-orange-500'
+                                            }`}
                                         style={{ width: `${item.progress}%` }}
-                                    >
-                                        <div className="absolute inset-0 bg-white/20 transform -skew-x-12 w-full -translate-x-full group-hover:animate-shimmer"></div>
-                                    </div>
+                                    ></div>
                                 </div>
-                                <div className="flex justify-between text-xs text-gray-400 mt-1 font-medium">
+                                <div className="flex justify-between text-xs text-gray-400 mt-1">
                                     <span>₹{item.spent} Cr Spent</span>
                                     <span>₹{item.budget} Cr Allocated</span>
                                 </div>
@@ -118,68 +114,90 @@ export default function Analytics() {
                     </div>
                 </div>
 
-                {/* Project Status Distribution */}
-                <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 relative">
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-orange-500 to-red-500"></div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Project Status</h3>
-                    <p className="text-sm text-gray-500 mb-8">Current status of all active projects</p>
-
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="relative w-64 h-64">
-                            {/* 3D Donut Effect */}
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 shadow-inner"></div>
-                            <div className="absolute inset-2 rounded-full bg-white shadow-2xl flex items-center justify-center flex-col z-10">
-                                <span className="text-5xl font-black text-gray-800 drop-shadow-sm">1,245</span>
-                                <span className="text-sm font-bold text-gray-400 uppercase tracking-wide mt-1">Total Projects</span>
+                {/* Project Status */}
+                <div className="bg-white p-6 rounded-lg shadow">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Project Status</h3>
+                    <div className="space-y-3">
+                        <div className="flex items-center justify-between p-3 bg-blue-50 rounded">
+                            <div className="flex items-center gap-3">
+                                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                                <span className="font-medium text-gray-700">In Progress</span>
                             </div>
-
-                            {/* Conic Gradient for Chart Segments */}
-                            <div className="absolute inset-0 rounded-full opacity-90" style={{
-                                background: `conic-gradient(
-                                    #3b82f6 0% 45%, 
-                                    transparent 45% 46%,
-                                    #22c55e 46% 75%, 
-                                    transparent 75% 76%,
-                                    #f97316 76% 90%, 
-                                    transparent 90% 91%,
-                                    #ef4444 91% 100%
-                                )`,
-                                maskImage: 'radial-gradient(transparent 60%, black 61%)',
-                                WebkitMaskImage: 'radial-gradient(transparent 60%, black 61%)'
-                            }}></div>
+                            <span className="text-lg font-bold text-gray-900">560 (45%)</span>
                         </div>
-
-                        {/* Legend */}
-                        <div className="grid grid-cols-2 gap-x-12 gap-y-4 mt-10 w-full max-w-md">
+                        <div className="flex items-center justify-between p-3 bg-green-50 rounded">
                             <div className="flex items-center gap-3">
-                                <div className="w-4 h-4 rounded-md bg-blue-500 shadow-lg shadow-blue-500/40"></div>
-                                <div>
-                                    <p className="text-sm font-bold text-gray-700">In Progress</p>
-                                    <p className="text-xs text-gray-500">560 Projects (45%)</p>
-                                </div>
+                                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span className="font-medium text-gray-700">Completed</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="w-4 h-4 rounded-md bg-green-500 shadow-lg shadow-green-500/40"></div>
-                                <div>
-                                    <p className="text-sm font-bold text-gray-700">Completed</p>
-                                    <p className="text-xs text-gray-500">373 Projects (30%)</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <div className="w-4 h-4 rounded-md bg-orange-500 shadow-lg shadow-orange-500/40"></div>
-                                <div>
-                                    <p className="text-sm font-bold text-gray-700">Pending</p>
-                                    <p className="text-xs text-gray-500">186 Projects (15%)</p>
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <div className="w-4 h-4 rounded-md bg-red-500 shadow-lg shadow-red-500/40"></div>
-                                <div>
-                                    <p className="text-sm font-bold text-gray-700">Delayed</p>
-                                    <p className="text-xs text-gray-500">124 Projects (10%)</p>
-                                </div>
-                            </div>
+                            <span className="text-lg font-bold text-gray-900">373 (30%)</span>
                         </div>
+                        <div className="flex items-center justify-between p-3 bg-orange-50 rounded">
+                            <div className="flex items-center gap-3">
+                                <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                                <span className="font-medium text-gray-700">Pending</span>
+                            </div>
+                            <span className="text-lg font-bold text-gray-900">186 (15%)</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-red-50 rounded">
+                            <div className="flex items-center gap-3">
+                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                <span className="font-medium text-gray-700">Delayed</span>
+                            </div>
+                            <span className="text-lg font-bold text-gray-900">124 (10%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Scheme-wise Fund Utilization */}
+                <div className="bg-white p-6 rounded-lg shadow">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Scheme-wise Fund Utilization</h3>
+                    <div className="space-y-4">
+                        {schemeData.map((scheme, index) => (
+                            <div key={index} className="border border-gray-200 rounded-lg p-4">
+                                <div className="flex items-center justify-between mb-2">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: scheme.color }}></div>
+                                        <span className="font-bold text-gray-800">{scheme.name}</span>
+                                    </div>
+                                    <span className="text-sm font-bold" style={{ color: scheme.color }}>
+                                        {((scheme.spent / scheme.budget) * 100).toFixed(1)}%
+                                    </span>
+                                </div>
+                                <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                                    <div
+                                        className="h-2 rounded-full"
+                                        style={{ width: `${(scheme.spent / scheme.budget) * 100}%`, backgroundColor: scheme.color }}
+                                    ></div>
+                                </div>
+                                <div className="flex justify-between text-xs text-gray-500">
+                                    <span>Utilized: ₹{scheme.spent} Cr</span>
+                                    <span>Budget: ₹{scheme.budget} Cr</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Monthly Expenditure Trend */}
+                <div className="bg-white p-6 rounded-lg shadow">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Monthly Expenditure Trend</h3>
+                    <div className="h-64">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={monthlyExpenditure}>
+                                <defs>
+                                    <linearGradient id="colorSpent" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                                        <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                                    </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis dataKey="month" tick={{ fill: '#6b7280', fontSize: 12 }} />
+                                <YAxis tick={{ fill: '#6b7280', fontSize: 12 }} />
+                                <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e5e7eb' }} />
+                                <Area type="monotone" dataKey="spent" stroke="#10b981" strokeWidth={2} fill="url(#colorSpent)" name="Spent (Cr)" />
+                            </AreaChart>
+                        </ResponsiveContainer>
                     </div>
                 </div>
             </div>
