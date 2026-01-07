@@ -1,0 +1,179 @@
+                {/* 100-Point Scoring System */}
+                <div className="mb-6 border-t-4 border-blue-600 pt-6">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-lg font-bold text-gray-900">Village Eligibility Scoring (100 Points)</h3>
+                        <div className="px-4 py-2 bg-blue-100 rounded-lg">
+                            <span className="text-sm text-gray-600">Total Score: </span>
+                            <span className="text-2xl font-bold text-blue-600">
+                                {Object.values(formData.scores || {}).reduce((sum, score) => sum + (parseInt(score) || 0), 0)}/100
+                            </span>
+                        </div>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-4">Score each indicator based on field verification. Minimum 60 points required for eligibility.</p>
+
+                    <div className="space-y-3">
+                        {/* Domain 1: Water & Sanitation */}
+                        <details className="bg-blue-50 border border-blue-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-blue-900 hover:bg-blue-100">
+                                Domain 1: Drinking Water & Sanitation (16 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-blue-200">
+                                <ScoreRow id="d1_1" label="1.1 Adequate drinking water sources available?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_2" label="1.2 % households with clean water" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_3" label="1.3 % households with toilets (IHHLs)" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_4" label="1.4 Toilets in all schools/Anganwadis?" options={[{l:'Yes=100%',s:2},{l:'No=0%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_5" label="1.5 Open defecation still happening?" options={[{l:'Yes',s:0},{l:'No',s:2}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_6" label="1.6 % drains along internal roads" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_7" label="1.7 % existing drains functioning" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d1_8" label="1.8 % waste disposed effectively" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 2: Education */}
+                        <details className="bg-green-50 border border-green-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-green-900 hover:bg-green-100">
+                                Domain 2: Education (14 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-green-200">
+                                <ScoreRow id="d2_1" label="2.1 % children (6-10) attending primary" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d2_2" label="2.2 % children (11-13) attending middle" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d2_3" label="2.3 % children (14-15) attending secondary" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d2_4" label="2.4 % children (16-17) attending higher secondary" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d2_5" label="2.5 % youth (18-23) in post higher secondary" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d2_6" label="2.6 % SC children with pre-matric scholarship" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d2_7" label="2.7 % SC children with post-matric scholarship" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 3: Health */}
+                        <details className="bg-red-50 border border-red-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-red-900 hover:bg-red-100">
+                                Domain 3: Health & Nutrition (22 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-red-200">
+                                <ScoreRow id="d3_1" label="3.1 % households under Health Protection Scheme" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_2" label="3.2 Emergency ambulance available?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_3" label="3.3 % pregnant women severely anemic" options={[{l:'0%',s:2},{l:'>0%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_4" label="3.4 % institutional deliveries last year" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_5" label="3.5 % low-birth-weight children last year" options={[{l:'0%',s:2},{l:'>0%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_6" label="3.6 % full immunization (<1 year)" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_7" label="3.7 % underweight children (0-5 years)" options={[{l:'0%',s:2},{l:'>0%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_8" label="3.8 Pregnant women deaths last year" options={[{l:'Nil',s:2},{l:'>0',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_9" label="3.9 Children (<1 year) deaths last year" options={[{l:'Nil',s:2},{l:'>0',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_10" label="3.10 % communicable disease treatment" options={[{l:'100%',s:2},{l:'<100%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d3_11" label="3.11 All Anganwadis constructed?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 4: Social Security */}
+                        <details className="bg-purple-50 border border-purple-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-purple-900 hover:bg-purple-100">
+                                Domain 4: Social Security (6 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-purple-200">
+                                <ScoreRow id="d4_1" label="4.1 % eligible women with Widow Pension" options={[{l:'100%',s:2},{l:'0%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d4_2" label="4.2 % eligible persons with Old Age Pension" options={[{l:'100%',s:2},{l:'0%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d4_3" label="4.3 % eligible persons with Disability Pension" options={[{l:'100%',s:2},{l:'0%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 5: Roads & Housing */}
+                        <details className="bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-yellow-900 hover:bg-yellow-100">
+                                Domain 5: Rural Roads & Housing (6 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-yellow-200">
+                                <ScoreRow id="d5_1" label="5.1 Village connected by all-weather roads?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d5_2" label="5.2 % internal roads CC/brick/Pakka/Tiled" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d5_3" label="5.3 % households in Kachcha/unsafe houses" options={[{l:'100%',s:2},{l:'0%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 6: Electricity */}
+                        <details className="bg-orange-50 border border-orange-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-orange-900 hover:bg-orange-100">
+                                Domain 6: Electricity & Clean Fuel (10 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-orange-200">
+                                <ScoreRow id="d6_1" label="6.1 Village electrified?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d6_2" label="6.2 % households with electricity" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d6_3" label="6.3 % households using LED bulb" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d6_4" label="6.4 % households with gas connection" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d6_5" label="6.5 % internal roads with street lights" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 7: Agriculture */}
+                        <details className="bg-lime-50 border border-lime-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-lime-900 hover:bg-lime-100">
+                                Domain 7: Agricultural Practices (6 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-lime-200">
+                                <ScoreRow id="d7_1" label="7.1 % farmers with Soil Health Card" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d7_2" label="7.2 % organic farming practices adopted" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d7_3" label="7.3 % watershed management practices" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 8: Financial Inclusion */}
+                        <details className="bg-indigo-50 border border-indigo-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-indigo-900 hover:bg-indigo-100">
+                                Domain 8: Financial Inclusion (8 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-indigo-200">
+                                <ScoreRow id="d8_1" label="8.1 % population with Aadhaar (>5 years)" options={[{l:'>98%',s:2},{l:'0-98%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d8_2" label="8.2 % households with bank accounts" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d8_3" label="8.3 % covered under PM Suraksha Bima" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d8_4" label="8.4 % covered under PM Jeevan Jyoti Bima" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 9: Digitization */}
+                        <details className="bg-cyan-50 border border-cyan-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-cyan-900 hover:bg-cyan-100">
+                                Domain 9: Digitization (6 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-cyan-200">
+                                <ScoreRow id="d9_1" label="9.1 Village has Internet connectivity?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d9_2" label="9.2 Common Service Centre/Cyber Café?" options={[{l:'Yes',s:2},{l:'No',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d9_3" label="9.3 % digitally literate persons" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+
+                        {/* Domain 10: Livelihood */}
+                        <details className="bg-pink-50 border border-pink-200 rounded-lg">
+                            <summary className="p-4 cursor-pointer font-semibold text-pink-900 hover:bg-pink-100">
+                                Domain 10: Livelihood & Skill Development (6 points)
+                            </summary>
+                            <div className="p-4 space-y-3 border-t border-pink-200">
+                                <ScoreRow id="d10_1" label="10.1 % youth undergoing skill development" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d10_2" label="10.2 % youth with bank-linked loans" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                                <ScoreRow id="d10_3" label="10.3 % households with SHG members" options={[{l:'>75%',s:2},{l:'50-75%',s:1},{l:'<50%',s:0}]} formData={formData} setFormData={setFormData} />
+                            </div>
+                        </details>
+                    </div>
+
+                    {/* Score Summary */}
+                    <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-lg">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-gray-600">Total Score</p>
+                                <p className="text-3xl font-bold text-blue-600">
+                                    {Object.values(formData.scores || {}).reduce((sum, score) => sum + (parseInt(score) || 0), 0)}/100
+                                </p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-sm text-gray-600">Recommendation</p>
+                                <p className={`text-xl font-bold ${
+                                    Object.values(formData.scores || {}).reduce((sum, score) => sum + (parseInt(score) || 0), 0) >= 60 
+                                        ? 'text-green-600' 
+                                        : 'text-red-600'
+                                }`}>
+                                    {Object.values(formData.scores || {}).reduce((sum, score) => sum + (parseInt(score) || 0), 0) >= 60 
+                                        ? '✓ Eligible (≥60)' 
+                                        : '✗ Not Eligible (<60)'}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
